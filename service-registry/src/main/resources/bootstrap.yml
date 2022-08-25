@@ -1,0 +1,4 @@
+# Enabling config-server in each service so that common configuration can be added from GitHub
+spring.cloud.config:enabled: true
+spring.cloud.config:uri: http://localhost:9393
+#-------------------------------------------------

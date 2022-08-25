@@ -1,0 +1,17 @@
+spring.application.name: EUREKA-SERVER
+server.port: 8761
+eureka.client.register-with-eureka: false
+eureka.client.fetch-registry: false
+
+
+
+
+
+  # Enabling config-server in each service so that common configuration can be added from GitHub
+  # spring.cloud.config:enabled: true
+  # spring.cloud.config:uri: http://localhost:9393
+
+  # Instead of adding in each file let's create bootstrap.yml and add this configuration
+  #-------------------------------------------------
+
+# Comment this below eureka client configuration in each service because now we start reading from config-server > GitHub

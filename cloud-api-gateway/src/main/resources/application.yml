@@ -1,0 +1,86 @@
+spring.application.name: API-GATEWAY
+server.port: 9191
+
+# Enabling config-server in each service so that common configuration can be added from GitHub
+# spring.cloud.config:enabled: true
+# spring.cloud.config:uri: http://localhost:9393
+
+# Instead of adding in each file let's create bootstrap.yml and add this configuration
+#-------------------------------------------------
+
+# Cooment this below eurka client configuation in each service becsue now we start reading from config-server > GitHub
+#eureka.client.register-with-eureka: true
+#eureka.client.fetch-registry: true
+#eureka.client.service-url.defaultzone: http://localhost:8761/eureka/
+eureka.client.instance.hostname: localhost
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        #Route -1
+        - id: EMPLOYEE-SERVICE
+          uri: lb://EMPLOYEE-SERVICE
+          predicates:
+            - Path=/employees/**   # Path Information
+          filters:
+            - AddRequestHeader=X-Tenant, acme
+            - AddResponseHeader=X-Genre, fantacy
+            - name: Retry
+              args:
+                retries: 3
+                methods: GET
+                backoff:
+                  firstBackoff: 50ms
+                  maxBackoff: 500ms
+            - name: CircuitBreaker
+              args:
+                name: EMPLOYEE-SERVICE
+                fallbackUri: forward:/employeeServiceFallBack
+
+
+        - id: DEPARTMENT-SERVICE
+          uri: lb://DEPARTMENT-SERVICE
+          predicates:
+            - Path=/departments/**
+          filters:                # Adding CircuitBreaker FallBackController Method for emp service
+            - AddRequestHeader=X-Tenant, acme
+            - AddResponseHeader=X-Genre, fantacy
+            - name: Retry
+              args:
+                retries: 3 # retries is not good idea for post request
+                methods: GET
+                backoff:
+                  firstBackoff: 50ms
+                  maxBackoff: 500ms
+            - name: CircuitBreaker
+              args:
+                name: DEPARTMENT-SERVUCE
+                fallbackUri: forward:/departmentServiceFallBack
+
+
+# Hystrix fallback timout configuration
+
+hystrix:
+  command:
+    fallbackcmd:
+        execution:
+          isolation:
+            thread:
+              timeoutInMillisecond: 4000
+
+# Configuring Actuator properties
+#management.endpoints.web.exposure.include : info, health
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: hystrix.stream
+

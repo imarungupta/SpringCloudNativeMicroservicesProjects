@@ -1,0 +1,20 @@
+server.port:  9002
+spring.application.name: EMPLOYEE-SERVICE
+
+#zipkin:
+#  base-url: http://127.0.0.1:9411/
+
+  # Enabling config-server in each service so that common configuration can be added from GitHub
+#spring.cloud.config:enabled: true
+#spring.cloud.config:uri: http://localhost:9393
+
+  # Instead of adding in each file let's create bootstrap.yml and add this configuration
+  #-------------------------------------------------
+
+  # Comment this below eureka client configuration in each service because now we start reading from config-server > GitHub
+
+
+#eureka.client.register-with-eureka: true
+#eureka.client.fetch-registry: true
+#eureka.client.serviceUrl.defaultZone: http://localhost:8761/eureka/
+#eureka.instance.hostname: localhost
