@@ -1,8 +1,6 @@
 package com.spring.cloud.employee.api.DTO;
 
-
 import com.spring.cloud.employee.api.entity.Employee;
-import com.spring.cloud.employee.api.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,8 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponseTemplateDTO {
+public class JwtResponseDTO {
+
     private Employee employee;
-    private Department department;
-    private Role role;
+    private String jwtToken;
 }

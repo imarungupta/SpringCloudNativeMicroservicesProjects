@@ -1,0 +1,31 @@
+package com.spring.cloud.employee.api.configuration;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+// Step -1 Let's configure http method, headers, and credential to be allowed
+
+@Configuration
+public class CorsConfiguration {
+
+    private static final String GET= "GET";
+    private static final String POST= "POST";
+    private static final String PUT= "PUT";
+    private static final String DELETE= "DELETE";
+
+    public WebMvcConfigurer webMvcConfigurer(){
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                //WebMvcConfigurer.super.addCorsMappings(registry); // Commented default and let's add our own
+
+                registry.addMapping("/**")
+                        .allowedMethods(GET,POST,PUT,DELETE)
+                        .allowedHeaders("*") // all kind of headers
+                        .allowedOriginPatterns("*") //allowedOrigins("*")//
+                        .allowCredentials(true);
+            }
+        };
+    }
+}

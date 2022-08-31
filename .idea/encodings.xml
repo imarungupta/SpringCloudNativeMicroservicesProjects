@@ -5,6 +5,7 @@
     <file url="file://$PROJECT_DIR$/cloud-config-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/department-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/hystrix-dashboard/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jwt-spring-security/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-registry/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />

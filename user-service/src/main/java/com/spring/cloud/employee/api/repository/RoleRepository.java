@@ -1,10 +1,10 @@
 package com.spring.cloud.employee.api.repository;
 
-import com.spring.cloud.employee.api.entity.Employee;
+import com.spring.cloud.employee.api.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<Employee,Long> {
-    Employee findByEmail(String username);
+public interface RoleRepository extends JpaRepository<Role, Long> {
+    Role findROleByRoleId(Long roleId);
 }

@@ -19,6 +19,7 @@
         <module>service-registry</module>
         <module>cloud-api-gateway</module>
         <module>cloud-config-server</module>
+        <module>jwt-spring-security</module>
         <module>hystrix-dashboard</module>
     </modules>
 
